@@ -47,7 +47,7 @@ const productos = [
     },
     {
         id: 7,
-        nombre: "Almanaque 1950&#8209;2000",
+        nombre: "Almanaque <br> 1950-2000",
         precio: 21000.00,
         descripcion: "Tela ligera y elástica, con bolsillo interno. Perfecto para crossfit.",
         imagen: "../Recursos/imagenes/almanaque.png"
@@ -57,13 +57,16 @@ const productos = [
 //Aprovecho que olvidé la guitarra Gibson de Marty McFly y agrego el objeto N°8
 const producto8 = {
     id: 8,
-    nombre: "Guibson ES&#8209;345",
+    nombre: "Guibson <br> ES-345",
     precio: 999999.99,
     descripcion: "Con esta guitarra podrás tocar Jhony B. Good a la perfección!",
     imagen:"../Recursos/imagenes/guibson.png"
 };
 //ya hora lo agrego al array de produtos usando el método push():
 productos.push(producto8);
+
+//========= Array de Carrito de Compras ============
+const trolley = [];
 
 
 //como vimos en clase, vamos a hacer unas cards para poder mostrar estos productos en el html, recorriendo el array de productos!
@@ -97,6 +100,8 @@ productos.forEach((producto) => {
 
     botonAgregar.addEventListener('click', ()=> {
         alert(`Agregaste ${producto.nombre} al carrito`);
+        trolley.push(producto);
+        console.log(trolley);
     });
     /*Pasos:
     1- Crear la card
