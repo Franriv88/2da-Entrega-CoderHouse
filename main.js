@@ -26,7 +26,7 @@ userButton.addEventListener('click', () => {
 enterButton.addEventListener('click', () => {
     let nombreDelAdmin = inputName.value;
     let claveDelAdmin = inputPass.value;
-    validacionAdmin(nombreDelAdmin, claveDelAdmin);
+    validacionAdmin(nombreDelAdmin, claveDelAdmin); //yo estaba llamando a la función afuera del event listener y no me funcionaba! ya investiqué el por qué... SCOPE!
 });
 
 function validacionAdmin(nombre, clave){
