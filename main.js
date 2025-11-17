@@ -31,8 +31,8 @@ enterButton.addEventListener('click', () => {
 
 function validacionAdmin(nombre, clave){
     if(nombre === "CoderHouse" && clave === "12345"){
-        console.log("Bienvenido Admin");
+        location.replace("./HTML/adminPage.html"); //no esaba seguro si usar window.location.replace me iba a quitar puntos, así que vi que puedo omitir el window y funciona igual XD
     } else {
-        console.log("Nombre o clave incorrectos");
+        alert("Nombre o clave incorrectos");
     }
 }
