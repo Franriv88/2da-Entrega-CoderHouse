@@ -7,7 +7,7 @@ const productos = [
         nombre: "Gorra Deluxe",
         precio: 18500.00,
         descripcion: "Diseñada para levantamientos pesados, con costuras reforzadas y tela antideslizante.",
-        imgen: "../Recursos/imagenes/gorra.png"
+        imagen: "../Recursos/imagenes/gorra.png"
     },
     {
         id: 2,
@@ -15,44 +15,56 @@ const productos = [
 
         precio: 16200.50,
         descripcion: "Corte sin mangas para máxima libertad de movimiento en tus brazos.",
-        imgen: "../Recursos/imagenes/botines.png"
+        imagen: "../Recursos/imagenes/botines.png"
     },
     {
         id: 3,
         nombre: "Condensador de Flujo",
         precio: 14000.00,
         descripcion: "Algodón premium ultra-suave para los entrenamientos más intensos.",
-        imgen: "../Recursos/imagenes/condensador.png"
+        imagen: "../Recursos/imagenes/condensador.png"
     },
     {
         id: 4,
         nombre: "Hover Board",
         precio: 23000.75,
         descripcion: "Ajuste perfecto y tela transpirable a prueba de sentadillas (squat-proof).",
-        imgen: "../Recursos/imagenes/board.png"
+        imagen: "../Recursos/imagenes/board.png"
     },
     {
         id: 5,
         nombre: "DeLorean",
         precio: 32500.00,
         descripcion: "Interior frizado, ideal para calentar en invierno o para un look urbano.",
-        imgen: "../Recursos/imagenes/delorean.png"
+        imagen: "../Recursos/imagenes/delorean.png"
     },
     {
         id: 6,
         nombre: "Mr Fusion",
         precio: 19999.99,
         descripcion: "Soporte de alto impacto para corridas, saltos y cardio.",
-        imgen: "../Recursos/imagenes/mrFusion.png"
+        imagen: "../Recursos/imagenes/mrFusion.png"
     },
     {
         id: 7,
         nombre: "Almanaque 1950&#8209;2000",
         precio: 21000.00,
         descripcion: "Tela ligera y elástica, con bolsillo interno. Perfecto para crossfit.",
-        imgen: "../Recursos/imagenes/almanaque.png"
+        imagen: "../Recursos/imagenes/almanaque.png"
     }
 ];
+
+//Aprovecho que olvidé la guitarra Gibson de Marty McFly y agrego el objeto N°8
+const producto8 = {
+    id: 8,
+    nombre: "Guibson ES&#8209;345",
+    precio: 999999.99,
+    descripcion: "Con esta guitarra podrás tocar Jhony B. Good a la perfección!",
+    imagen:"../Recursos/imagenes/guibson.png"
+};
+//ya hora lo agrego al array de produtos usando el método push():
+productos.push(producto8);
+
 
 //como vimos en clase, vamos a hacer unas cards para poder mostrar estos productos en el html, recorriendo el array de productos!
 
@@ -69,7 +81,7 @@ productos.forEach((producto) => {
     //diapsitiva 19 de "Plantillas literales e InneHTML"
     cardItem.innerHTML = `
         <h2 class="font-face">${producto.nombre}</h2>
-        <img src="${producto.imgen}" alt="${producto.nombre}">
+        <img src="${producto.imagen}" alt="${producto.nombre}">
         <div class="product-info">
             <p class="font-face">Precio: $${producto.precio}</p>
             <p>Descripción: ${producto.descripcion}</p>
