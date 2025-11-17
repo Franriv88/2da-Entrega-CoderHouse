@@ -75,7 +75,6 @@ productos.forEach((producto) => {
             <p>Descripción: ${producto.descripcion}</p>
         <div class="card-buttons">
             <button class="addButton">Agregar</button>
-            <button class="deleteButton">Eliminar</button>
         </div>
     `;
 
