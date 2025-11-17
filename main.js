@@ -23,6 +23,7 @@ userButton.addEventListener('click', () => {
 })
 
 //Recibo el nombre y la clave y los guardo en variables al hacer click en el boton ingresar para luego usar estos datos en la funcíon rudimentaria para comparar que el usuario y la clave sean correctas
+//min 1:58:42 de la clase. función felcha y hack para los parámetros
 enterButton.addEventListener('click', () => {
     let nombreDelAdmin = inputName.value;
     let claveDelAdmin = inputPass.value;
@@ -31,7 +32,7 @@ enterButton.addEventListener('click', () => {
 
 function validacionAdmin(nombre, clave){
     if(nombre === "CoderHouse" && clave === "12345"){
-        location.replace("./HTML/adminPage.html"); //no esaba seguro si usar window.location.replace me iba a quitar puntos, así que vi que puedo omitir el window y funciona igual XD
+        window.location.replace("./HTML/adminPage.html"); //window.location sí lo puedo usar! min 2:10:23. Iugal me dí cuenta que si le quito la palabra "window" funciona igual.
     } else {
         alert("Nombre o clave incorrectos");
     }

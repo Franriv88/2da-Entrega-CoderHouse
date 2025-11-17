@@ -71,6 +71,7 @@ productos.push(producto8);
 //primero obtengo el contenedor donde voy a insertar las cards
 const productItemsContainer = document.getElementById('productsContainer'); 
 
+//============ Acá incia mi forEach ===========
 //aquí recorro el array de productos
 productos.forEach((producto) => {
     let cardItem = document.createElement('article'); //en clase vimos que podemos crear elementos html desde acá(minuto 57:46 de la clase del 15 nov)
@@ -86,11 +87,22 @@ productos.forEach((producto) => {
             <p class="font-face">Precio: $${producto.precio}</p>
             <p>Descripción: ${producto.descripcion}</p>
         <div class="card-buttons">
-            <button class="addButton">Agregar</button>
+            <button class="addButton" id="addButton${producto.id}">Agregar</button>
         </div>
     `;
 
     //métopdo appendChild: agrega un nodo al final de la lista de hijos de un nodo padre especificado.
     productItemsContainer.appendChild(cardItem); //le agrego la card al contenedor de productos. Ahora las cards sí pasan a ser hijas del contenedor de productos
-}); 
+    const botonAgregar = document.getElementById(`addButton${producto.id}`);
 
+    botonAgregar.addEventListener('click', ()=> {
+        alert(`Agregaste ${producto.nombre} al carrito`);
+    });
+    /*Pasos:
+    1- Crear la card
+    2- Agregar la card al contenedor
+    3- Crear el botón "Agregar"
+    4- Creamos el evento
+    */
+}); 
+//============= y acá termina el forEach ==============
