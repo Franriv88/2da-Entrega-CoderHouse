@@ -100,7 +100,7 @@ productos.forEach((producto) => {
 
     botonAgregar.addEventListener('click', ()=> {
         alert(`Agregaste ${producto.nombre} al carrito`);
-        trolley.push(producto);
+        trolley.push({nombre: producto.nombre, precio: producto.precio, imagen: producto.imagen});
         console.log(trolley);
     });
     /*Pasos:
