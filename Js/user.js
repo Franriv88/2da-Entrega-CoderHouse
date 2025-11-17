@@ -96,18 +96,39 @@ productos.forEach((producto) => {
 
     //métopdo appendChild: agrega un nodo al final de la lista de hijos de un nodo padre especificado.
     productItemsContainer.appendChild(cardItem); //le agrego la card al contenedor de productos. Ahora las cards sí pasan a ser hijas del contenedor de productos
-    const botonAgregar = document.getElementById(`addButton${producto.id}`);
 
+    const botonAgregar = document.getElementById(`addButton${producto.id}`);
+    //lleno el carrito con cosas
     botonAgregar.addEventListener('click', ()=> {
-        alert(`Agregaste ${producto.nombre} al carrito`);
+        // alert(`Agregaste ${producto.nombre} al carrito`);
         trolley.push({nombre: producto.nombre, precio: producto.precio, imagen: producto.imagen});
+        llenarCarrito();
     });
+
+    function llenarCarrito(){
+        const contenidoDelCarrito = document.getElementById('trolleyContainer');
+        contenidoDelCarrito.innerHTML = "<h2>CARRITO DE COMPRAS</h2>";
+        trolley.forEach((item,index) =>{
+            // contenidoDelCarrito.innerHTML += `<p>${index+1}.${item.nombre} - $${item.precio}<br><img src="${item.imagen}" alt="${item.nombre}"></p>;`  //ASÍ NO PUDE LUEGO USAR EL CSS
+
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('trolleyItem')
+            itemDiv.innerHTML=`
+            <img src="${item.imagen}" alt="${item.nombre}" class="carrito-item-img">
+            <span class="carrito-item-nombre">${index+1}. ${item.nombre}</span>
+            <span class="carrito-item-precio">$${item.precio}</span>
+            `
+
+            contenidoDelCarrito.appendChild(itemDiv); 
+        });
+    }
     /*Pasos:
     1- Crear la card
     2- Agregar la card al contenedor
     3- Crear el botón "Agregar"
     4- Creamos el evento botonAgregar.addEventListener('click', ()=> {}
     5- Adentro puse una alerta y un push() para agregar al array de trolley (carrito) solo los campos que me interesan
+    6- Mostramos o imprimimos en el carrito
     */
 }); 
 //============= y acá termina el forEach ==============

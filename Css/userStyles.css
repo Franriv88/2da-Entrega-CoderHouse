@@ -95,7 +95,24 @@ body{
                 Sección de Carrito (Trolley) 
 =========================================================*/
 #trolleyContainer{
-    display: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+    align-items: stretch;
     width: 100%;
     min-height: 50vh;
+    background-color: var(--background-color);
+}
+
+.trolleyItem{
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
 }
