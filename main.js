@@ -11,8 +11,7 @@ const inputPass = document.getElementById('inputPass');
 //Escuchamos si se hizo click en el moton admin y mostramos los 2 inputs
 adminButton.addEventListener('click', () =>{
     inputName.style.display = 'block';
-    inputPass.style.display = 'block';
-    enterButton.style.display = 'block';
+    inputPass.style.display = 'block'; 
 })
 
 //Escuchamos si se hizo click en el boton user y ocultamos los 2 inputs
@@ -20,6 +19,7 @@ userButton.addEventListener('click', () => {
     inputName.style.display = 'none';
     inputPass.style.display = 'none';
     enterButton.style.display = 'none';
+    location.replace("./HTML/userPage.html")  //acá me voy a la pg de la tienda 
 })
 
 //Recibo el nombre y la clave y los guardo en variables al hacer click en el boton ingresar para luego usar estos datos en la funcíon rudimentaria para comparar que el usuario y la clave sean correctas
@@ -36,3 +36,18 @@ function validacionAdmin(nombre, clave){
         alert("Nombre o clave incorrectos");
     }
 }
+
+//Mostramos el botón "Ingresar" si se completan los campos en los inputs del admin y lo ocultamos si los inputs están vacíos
+function checkeoInputs(){
+    const nombre = inputName.value;
+    const clave = inputPass.value;
+
+    if(nombre !== "" && clave !== ""){
+        enterButton.style.display = 'block';
+    }else{
+        enterButton.style.display = 'none';
+    }
+}
+
+inputName.addEventListener('input', checkeoInputs);
+inputPass.addEventListener('input', checkeoInputs);

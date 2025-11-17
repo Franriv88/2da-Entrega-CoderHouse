@@ -82,3 +82,4 @@ productos.forEach((producto) => {
     //métopdo appendChild: agrega un nodo al final de la lista de hijos de un nodo padre especificado.
     productItemsContainer.appendChild(cardItem); //le agrego la card al contenedor de productos. Ahora las cards sí pasan a ser hijas del contenedor de productos
 }); 
+
