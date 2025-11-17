@@ -39,11 +39,14 @@ body{
     font-family: Arial, sans-serif;
 }
 
+/* ======================================================
+                Sección de Productos 
+=========================================================*/
 #productsContainer{
     display: flex;
     justify-content: center;
     flex-wrap: wrap; 
-    align-items: stretch; 
+    align-items: stretch;
     width: 100%;
     min-height: 50vh;
     background-color: var(--background-color);
@@ -88,3 +91,11 @@ body{
     padding-top: 10px;
 }
 
+/* ======================================================
+                Sección de Carrito (Trolley) 
+=========================================================*/
+#trolleyContainer{
+    display: none;
+    width: 100%;
+    min-height: 50vh;
+}

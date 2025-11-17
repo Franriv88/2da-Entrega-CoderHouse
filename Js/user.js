@@ -101,13 +101,39 @@ productos.forEach((producto) => {
     botonAgregar.addEventListener('click', ()=> {
         alert(`Agregaste ${producto.nombre} al carrito`);
         trolley.push({nombre: producto.nombre, precio: producto.precio, imagen: producto.imagen});
-        console.log(trolley);
     });
     /*Pasos:
     1- Crear la card
     2- Agregar la card al contenedor
     3- Crear el botón "Agregar"
-    4- Creamos el evento
+    4- Creamos el evento botonAgregar.addEventListener('click', ()=> {}
+    5- Adentro puse una alerta y un push() para agregar al array de trolley (carrito) solo los campos que me interesan
     */
 }); 
 //============= y acá termina el forEach ==============
+
+//=================================================================
+//======== Pantallas Productos <-> Carrito ========================
+//(muestro y oculto los productos y/o el carrito según sea el caso) 
+// ================================================================
+
+// capturo los elementos primero
+const productsContainer = document.getElementById('productsContainer');
+const trolleyContainer = document.getElementById('trolleyContainer');
+const btnVerProductos = document.getElementById('btnVerProductos');
+const btnVerTrolley = document.getElementById('btnVerTrolley');
+
+//Ahora los eventos para mostrar u ocultar las secciones de Productos <-> Carrito
+btnVerTrolley.addEventListener('click', () =>{
+    trolleyContainer.style.display = "block";
+    productsContainer.style.display = "none";
+    btnVerTrolley.style.display = "none";
+    btnVerProductos.style.display = "block";
+});
+
+btnVerProductos.addEventListener('click', () =>{
+    productsContainer.style.display = "flex";
+    trolleyContainer.style.display = "none";
+    btnVerProductos.style.display = "none";
+    btnVerTrolley.style.display = "block";
+});
