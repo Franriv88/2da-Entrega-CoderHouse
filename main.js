@@ -33,7 +33,7 @@ enterButton.addEventListener('click', () => {
 
 function validacionAdmin(nombre, clave){
     if(nombre === "CoderHouse" && clave === "12345"){
-        window.location.replace("./HTML/adminPage.html"); //window.location sí lo puedo usar! min 2:10:23. Iugal me dí cuenta que si le quito la palabra "window" funciona igual.
+        window.location.replace("./HTML/adminPage.html"); //window.location sí lo puedo usar! min 2:10:23. Iugal me dí cuenta que si le quito la palabra "window" funciona también.
     } else {
         alert("Nombre o clave incorrectos");
     }

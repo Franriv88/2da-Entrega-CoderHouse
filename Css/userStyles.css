@@ -39,6 +39,14 @@ body{
     font-family: Arial, sans-serif;
 }
 
+#containerCarrito{
+    background-image: url("../Recursos/imagenes/carritoWallpaper.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
 /* ======================================================
                 Sección de Productos 
 =========================================================*/
@@ -49,7 +57,6 @@ body{
     align-items: stretch;
     width: 100%;
     min-height: 50vh;
-    background-color: var(--background-color);
 }
 
 .productCard{
@@ -98,10 +105,9 @@ body{
     display: none;
     justify-content: center;
     flex-wrap: wrap; 
-    align-items: stretch;
+    align-items:center;
     width: 100%;
     min-height: 50vh;
-    background-color: var(--background-color);
 }
 
 .trolleyItem{
@@ -117,7 +123,7 @@ body{
     flex-direction:column;
 }
 
-.totalPagar{
+.totalPago{
     width: 100%;
     text-align: right; /* Alinea el total a la derecha */
     margin-top: 20px;
@@ -126,7 +132,11 @@ body{
     border-radius: 5px;
     font-family: 'DS-Digital', monospace; /* ¡Usamos tu fuente digital! */
     font-size: 1.8rem;
-    color: #00ff00; /* Verde neón para el dinero */
+    color: #fff; /* Verde neón para el dinero */
+}
+
+#monto{
+    color: #D61F03;
 }
 
 /* ====================================================

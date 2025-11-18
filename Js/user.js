@@ -140,7 +140,7 @@ function llenarCarrito(){
         
         const totalDiv = document.createElement('div')
         totalDiv.className = 'totalPago';
-        totalDiv.innerHTML = `<h3>Total a pagar: $${total.toFixed(2)}</h3>`;  //toFixed(2) me muestra 2 decimales
+        totalDiv.innerHTML = `<h3>Total a pagar: $ <sapan id="monto">${total.toFixed(2)}</span></h3>`;  //toFixed(2) me muestra 2 decimales
         contenidoDelCarrito.appendChild(totalDiv);
     }
 
@@ -148,6 +148,8 @@ function llenarCarrito(){
 function calcularTotal(){
     return trolley.reduce((acumulador, item) => acumulador + item.precio, 0);
 }
+
+
 //=================================================================
 //======== Pantallas Productos <-> Carrito ========================
 //(muestro u oculto los productos y/o el carrito según sea el caso) 
@@ -179,9 +181,16 @@ btnVerProductos.addEventListener('click', () =>{
 btnPedido.addEventListener('click', () =>{
     if(trolley.length > 0){
         const totalDelPedido = calcularTotal();
-        alert(`Pedido confirmado. Total: $${totalDelPedido.toFixed(2)}`);
+        alert(`Pedido confirmado. \nTotal a pagar: $${totalDelPedido.toFixed(2)}`);
+        vaciarCarrito();
     }
 });
+
+function vaciarCarrito(){
+    trolley.length = 0;
+    llenarCarrito();
+    alert("Se ha enviado tu peido. \nEl carrito se ha vaciado")
+}
 
 //=======================================================================
 
