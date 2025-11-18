@@ -105,9 +105,9 @@ productos.forEach((producto) => {
     //lleno el carrito con cosas
     botonAgregar.addEventListener('click', ()=> {
         // alert(`Agregaste ${producto.nombre} al carrito`);
-        trolley.push({nombre: producto.nombre, precio: producto.precio, imagen: producto.imagen});
-        //llamo a la función
-        llenarCarrito();
+        trolley.push({nombre: producto.nombre, precio: producto.precio, imagen: producto.imagen}); //cargo los productos 
+        localStorage.setItem("trolley", JSON.stringify(trolley)); //uso el localStorage para que mi carrito no se borre
+        llenarCarrito();   //llamo a la función
     });
     /*Pasos:
     1- Crear la card
