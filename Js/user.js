@@ -66,8 +66,12 @@ const producto8 = {
 productos.push(producto8);
 
 //========= Array de Carrito de Compras ============
-const trolley = [];
+//creo el array de carrito con lo que encuentre en el localStorage. Si está vació entonces en trolley guardo un array vacío
+const trolley = JSON.parse(localStorage.getItem("trolley")) || [];
 
+if(trolley.length > 0){
+    llenarCarrito();
+}
 
 //como vimos en clase, vamos a hacer unas cards para poder mostrar estos productos en el html, recorriendo el array de productos!
 
@@ -92,11 +96,7 @@ productos.forEach((producto) => {
         <div class="card-buttons">
             <button class="addButton" id="addButton${producto.id}">Agregar</button>
         </div>
-    `;
-
-    //Obs: usar id="addButton${ } con el producto.id lo qu hace es agregar id de manéra dinámica!
-
-
+    `;      //Obs: usar id="addButton${ } con el producto.id lo qu hace es agregar id de manéra dinámica!
 
     //métopdo appendChild: agrega un nodo al final de la lista de hijos de un nodo padre especificado.
     productItemsContainer.appendChild(cardItem); //le agrego la card al contenedor de productos. Ahora las cards sí pasan a ser hijas del contenedor de productos
@@ -115,7 +115,8 @@ productos.forEach((producto) => {
     3- Crear el botón "Agregar"
     4- Creamos el evento botonAgregar.addEventListener('click', ()=> {}
     5- Adentro puse una alerta y un push() para agregar al array de trolley (carrito) solo los campos que me interesan
-    6- Mostramos o imprimimos en el carrito
+    6- Guardamos en el localStorage (converimos a JSON con JSON.stringify(nombre de mi array de carrito))
+    7- Mostramos o imprimimos en el carrito, en el html
     */
 }); 
 //============= y acá termina el forEach ==============
@@ -132,24 +133,25 @@ function llenarCarrito(){
             <span class="carrito-item-nombre">${index+1}. ${item.nombre}</span>
             <span class="carrito-item-precio">$${item.precio}</span>
             `
-
             contenidoDelCarrito.appendChild(itemDiv); 
         });
         
-        //métod reduce() para reducir el array a un único valor total
-        const total = trolley.reduce((acumulador, item) => acumulador + item.precio, 0);
+        const total = calcularTotal();
+        
         const totalDiv = document.createElement('div')
         totalDiv.className = 'totalPago';
         totalDiv.innerHTML = `<h3>Total a pagar: $${total.toFixed(2)}</h3>`;  //toFixed(2) me muestra 2 decimales
         contenidoDelCarrito.appendChild(totalDiv);
-
-
     }
 
-
+//función con el método reduce() para reducir el array a un único valor total
+function calcularTotal(){
+    return trolley.reduce((acumulador, item) => acumulador + item.precio, 0);
+}
 //=================================================================
 //======== Pantallas Productos <-> Carrito ========================
-//(muestro y oculto los productos y/o el carrito según sea el caso) 
+//(muestro u oculto los productos y/o el carrito según sea el caso) 
+// apretando los botones VER CARRITO o VER PRODUCTOS
 // ================================================================
 
 // capturo los elementos primero
@@ -157,6 +159,7 @@ const productsContainer = document.getElementById('productsContainer');
 const trolleyContainer = document.getElementById('trolleyContainer');
 const btnVerProductos = document.getElementById('btnVerProductos');
 const btnVerTrolley = document.getElementById('btnVerTrolley');
+const btnPedido = document.getElementById('btnPedido');
 
 //Ahora los eventos para mostrar u ocultar las secciones de Productos <-> Carrito
 btnVerTrolley.addEventListener('click', () =>{
@@ -171,6 +174,13 @@ btnVerProductos.addEventListener('click', () =>{
     trolleyContainer.style.display = "none";
     btnVerProductos.style.display = "none";
     btnVerTrolley.style.display = "flex";
+});
+
+btnPedido.addEventListener('click', () =>{
+    if(trolley.length > 0){
+        const totalDelPedido = calcularTotal();
+        alert(`Pedido confirmado. Total: $${totalDelPedido.toFixed(2)}`);
+    }
 });
 
 //=======================================================================

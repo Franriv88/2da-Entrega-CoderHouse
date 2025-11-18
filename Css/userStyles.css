@@ -26,7 +26,7 @@
 :root{
     --primary-color: #ffffff;
     --secondary-color: #767575;
-    --background-color: #9b3434;
+    --background-color: #2852a5;
     --text-color: #0a0a0a;
     --font-face-color:rgb(0, 0, 0);
 }
@@ -117,10 +117,21 @@ body{
     flex-direction:column;
 }
 
+.totalPagar{
+    width: 100%;
+    text-align: right; /* Alinea el total a la derecha */
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.2); /* Un fondo sutil */
+    border-radius: 5px;
+    font-family: 'DS-Digital', monospace; /* ¡Usamos tu fuente digital! */
+    font-size: 1.8rem;
+    color: #00ff00; /* Verde neón para el dinero */
+}
 
-
-
-
+/* ====================================================
+                  BOTONES
+======================================================= */
 .buttonSelect{
     background-color: black;
     color: greenyellow;
@@ -138,17 +149,4 @@ body{
     border: 0.5px solid rgb(0, 183, 255);
     cursor: pointer;
     box-shadow: 0px 0px 70px rgb(0, 183, 255); /* Shadow on hover */
-}
-
-
-.totalPagar{
-    width: 100%;
-    text-align: right; /* Alinea el total a la derecha */
-    margin-top: 20px;
-    padding: 15px;
-    background-color: rgba(0, 0, 0, 0.2); /* Un fondo sutil */
-    border-radius: 5px;
-    font-family: 'DS-Digital', monospace; /* ¡Usamos tu fuente digital! */
-    font-size: 1.8rem;
-    color: #00ff00; /* Verde neón para el dinero */
 }
