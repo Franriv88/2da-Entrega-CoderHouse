@@ -94,6 +94,10 @@ productos.forEach((producto) => {
         </div>
     `;
 
+    //Obs: usar id="addButton${ } con el producto.id lo qu hace es agregar id de manéra dinámica!
+
+
+
     //métopdo appendChild: agrega un nodo al final de la lista de hijos de un nodo padre especificado.
     productItemsContainer.appendChild(cardItem); //le agrego la card al contenedor de productos. Ahora las cards sí pasan a ser hijas del contenedor de productos
 
@@ -102,26 +106,9 @@ productos.forEach((producto) => {
     botonAgregar.addEventListener('click', ()=> {
         // alert(`Agregaste ${producto.nombre} al carrito`);
         trolley.push({nombre: producto.nombre, precio: producto.precio, imagen: producto.imagen});
+        //llamo a la función
         llenarCarrito();
     });
-
-    function llenarCarrito(){
-        const contenidoDelCarrito = document.getElementById('trolleyContainer');
-        contenidoDelCarrito.innerHTML = "<h2>CARRITO DE COMPRAS</h2>";
-        trolley.forEach((item,index) =>{
-            // contenidoDelCarrito.innerHTML += `<p>${index+1}.${item.nombre} - $${item.precio}<br><img src="${item.imagen}" alt="${item.nombre}"></p>;`  //ASÍ NO PUDE LUEGO USAR EL CSS
-
-            const itemDiv = document.createElement('div');
-            itemDiv.classList.add('trolleyItem')
-            itemDiv.innerHTML=`
-            <img src="${item.imagen}" alt="${item.nombre}" class="carrito-item-img">
-            <span class="carrito-item-nombre">${index+1}. ${item.nombre}</span>
-            <span class="carrito-item-precio">$${item.precio}</span>
-            `
-
-            contenidoDelCarrito.appendChild(itemDiv); 
-        });
-    }
     /*Pasos:
     1- Crear la card
     2- Agregar la card al contenedor
@@ -132,6 +119,33 @@ productos.forEach((producto) => {
     */
 }); 
 //============= y acá termina el forEach ==============
+
+function llenarCarrito(){
+        const contenidoDelCarrito = document.getElementById('trolleyContainer');
+        contenidoDelCarrito.innerHTML = "<h2>CARRITO DE COMPRAS</h2>";
+        trolley.forEach((item,index) =>{
+            // contenidoDelCarrito.innerHTML += `<p>${index+1}.${item.nombre} - $${item.precio}<br><img src="${item.imagen}" alt="${item.nombre}"></p>;`  //ASÍ NO PUDE LUEGO USAR EL CSS
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('trolleyItem')
+            itemDiv.innerHTML=`
+            <img src="${item.imagen}" alt="${item.nombre}" class="carrito-item-img">
+            <span class="carrito-item-nombre">${index+1}. ${item.nombre}</span>
+            <span class="carrito-item-precio">$${item.precio}</span>
+            `
+
+            contenidoDelCarrito.appendChild(itemDiv); 
+        });
+        
+        //métod reduce() para reducir el array a un único valor total
+        const total = trolley.reduce((acumulador, item) => acumulador + item.precio, 0);
+        const totalDiv = document.createElement('div')
+        totalDiv.className = 'totalPago';
+        totalDiv.innerHTML = `<h3>Total a pagar: $${total.toFixed(2)}</h3>`;  //toFixed(2) me muestra 2 decimales
+        contenidoDelCarrito.appendChild(totalDiv);
+
+
+    }
+
 
 //=================================================================
 //======== Pantallas Productos <-> Carrito ========================
@@ -146,7 +160,7 @@ const btnVerTrolley = document.getElementById('btnVerTrolley');
 
 //Ahora los eventos para mostrar u ocultar las secciones de Productos <-> Carrito
 btnVerTrolley.addEventListener('click', () =>{
-    trolleyContainer.style.display = "block";
+    trolleyContainer.style.display = "flex";
     productsContainer.style.display = "none";
     btnVerTrolley.style.display = "none";
     btnVerProductos.style.display = "block";
@@ -156,7 +170,7 @@ btnVerProductos.addEventListener('click', () =>{
     productsContainer.style.display = "flex";
     trolleyContainer.style.display = "none";
     btnVerProductos.style.display = "none";
-    btnVerTrolley.style.display = "block";
+    btnVerTrolley.style.display = "flex";
 });
 
 //=======================================================================
