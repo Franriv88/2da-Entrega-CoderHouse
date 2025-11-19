@@ -132,8 +132,14 @@ function llenarCarrito(){
             <img src="${item.imagen}" alt="${item.nombre}" class="carrito-item-img">
             <span class="carrito-item-nombre">${index+1}. ${item.nombre}</span>
             <span class="carrito-item-precio">$${item.precio}</span>
+            <button class="deleteButton" id="deleteButton">Eliminar</button>
             `
             contenidoDelCarrito.appendChild(itemDiv); 
+
+            const botonEliminar = itemDiv.querySelector('.deleteButton');
+            botonEliminar.addEventListener('click', () => {
+                eliminarDelCarrito(index);
+            })
         });
         
         const total = calcularTotal();
@@ -167,20 +173,32 @@ const btnPedido = document.getElementById('btnPedido');
 btnVerTrolley.addEventListener('click', () =>{
     trolleyContainer.style.display = "flex";
     productsContainer.style.display = "none";
-    btnVerTrolley.style.display = "none";
-    btnVerProductos.style.display = "block";
+    btnVerTrolley.style.visibility = "hidden";
+    btnVerProductos.style.visibility = "visible";
+    btnPedido.style.visibility = "visible";
 });
 
 btnVerProductos.addEventListener('click', () =>{
     productsContainer.style.display = "flex";
     trolleyContainer.style.display = "none";
-    btnVerProductos.style.display = "none";
-    btnVerTrolley.style.display = "flex";
+    btnVerProductos.style.visibility = "hidden";
+    btnVerTrolley.style.visibility = "visible";
+    btnPedido.style.visibility = "hidden";
 });
 
 btnPedido.addEventListener('click', () =>{
     if(trolley.length > 0){
+        console.log("1. Iniciando proceso de pedido...");
         const totalDelPedido = calcularTotal();
+        console.log("2. Total de este pedido:", totalDelPedido);
+        let historialRecaudado = parseFloat(localStorage.getItem('adminRecaudado')) || 0;
+        let historialPedidos = parseInt(localStorage.getItem('adminContador')) || 0;
+        console.log("3. Datos viejos recuperados:", historialRecaudado, historialPedidos);
+        historialRecaudado += totalDelPedido; //sumo el dinero
+        historialPedidos += 1; //sumo 1 pedido más
+        console.log("4. Nuevos datos a guardar:", historialRecaudado, historialPedidos); 
+        localStorage.setItem('adminRecaudado', historialRecaudado);
+        localStorage.setItem('adminContador', historialPedidos);
         alert(`Pedido confirmado. \nTotal a pagar: $${totalDelPedido.toFixed(2)}`);
         vaciarCarrito();
     }
@@ -188,6 +206,7 @@ btnPedido.addEventListener('click', () =>{
 
 function vaciarCarrito(){
     trolley.length = 0;
+    localStorage.setItem("trolley", JSON.stringify(trolley));
     llenarCarrito();
     alert("Se ha enviado tu peido. \nEl carrito se ha vaciado")
 }

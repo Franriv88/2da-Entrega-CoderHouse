@@ -12,7 +12,7 @@ const inputPass = document.getElementById('inputPass');
 adminButton.addEventListener('click', () =>{
     inputName.style.display = 'block';
     inputPass.style.display = 'block'; 
-    alert("Name: CoderHouse y Pass: 12345");
+    alert("Name: CoderHouse \nPass: 12345");
 })
 
 //Escuchamos si se hizo click en el boton user y ocultamos los 2 inputs
