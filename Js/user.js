@@ -188,15 +188,11 @@ btnVerProductos.addEventListener('click', () =>{
 
 btnPedido.addEventListener('click', () =>{
     if(trolley.length > 0){
-        console.log("1. Iniciando proceso de pedido...");
         const totalDelPedido = calcularTotal();
-        console.log("2. Total de este pedido:", totalDelPedido);
         let historialRecaudado = parseFloat(localStorage.getItem('adminRecaudado')) || 0;
         let historialPedidos = parseInt(localStorage.getItem('adminContador')) || 0;
-        console.log("3. Datos viejos recuperados:", historialRecaudado, historialPedidos);
         historialRecaudado += totalDelPedido; //sumo el dinero
-        historialPedidos += 1; //sumo 1 pedido más
-        console.log("4. Nuevos datos a guardar:", historialRecaudado, historialPedidos); 
+        historialPedidos += 1; //sumo 1 pedido más 
         localStorage.setItem('adminRecaudado', historialRecaudado);
         localStorage.setItem('adminContador', historialPedidos);
         alert(`Pedido confirmado. \nTotal a pagar: $${totalDelPedido.toFixed(2)}`);
