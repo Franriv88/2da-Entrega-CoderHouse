@@ -45,7 +45,8 @@ nav{
 }
 
 #containerCarrito{
-    background-image: url("../Recursos/imagenes/carritoWallpaper.jpg");
+    /* background-image: url("../Recursos/imagenes/carritoWallpaper.jpg"); */
+    background-color: #0a0a0a;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
