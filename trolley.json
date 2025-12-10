@@ -1,0 +1,60 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Gorra Deluxe",
+      "precio": 18500.00,
+      "descripcion": "Diseñada para levantamientos pesados, con costuras reforzadas y tela antideslizante.",
+      "imagen": "../Recursos/imagenes/gorra.png"
+    },
+    {
+      "id": 2,
+      "nombre": "Botines Autoajustables",
+      "precio": 16200.50,
+      "descripcion": "Corte sin mangas para máxima libertad de movimiento en tus brazos.",
+      "imagen": "../Recursos/imagenes/botines.png"
+    },
+    {
+      "id": 3,
+      "nombre": "Condensador de Flujo",
+      "precio": 14000.00,
+      "descripcion": "Algodón premium ultra-suave para los entrenamientos más intensos.",
+      "imagen": "../Recursos/imagenes/condensador.png"
+    },
+    {
+      "id": 4,
+      "nombre": "Hover Board",
+      "precio": 23000.75,
+      "descripcion": "Ajuste perfecto y tela transpirable a prueba de sentadillas (squat-proof).",
+      "imagen": "../Recursos/imagenes/board.png"
+    },
+    {
+      "id": 5,
+      "nombre": "DeLorean",
+      "precio": 32500.00,
+      "descripcion": "Interior frizado, ideal para calentar en invierno o para un look urbano.",
+      "imagen": "../Recursos/imagenes/delorean.png"
+    },
+    {
+      "id": 6,
+      "nombre": "Mr Fusion",
+      "precio": 19999.99,
+      "descripcion": "Soporte de alto impacto para corridas, saltos y cardio.",
+      "imagen": "../Recursos/imagenes/mrFusion.png"
+    },
+    {
+      "id": 7,
+      "nombre": "Almanaque <br> 1950-2000",
+      "precio": 21000.00,
+      "descripcion": "Tela ligera y elástica, con bolsillo interno. Perfecto para crossfit.",
+      "imagen": "../Recursos/imagenes/almanaque.png"
+    },
+    {
+      "id": 8,
+      "nombre": "Guibson <br> ES-345",
+      "precio": 999999.99,
+      "descripcion": "Con esta guitarra podrás tocar Jhony B. Good a la perfección!",
+      "imagen": "../Recursos/imagenes/guibson.png"
+    }
+  ]
+}
