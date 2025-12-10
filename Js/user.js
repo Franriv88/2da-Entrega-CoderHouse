@@ -57,6 +57,11 @@ async function loadProducts(){
 
 loadProducts();  //Llamo a la función 
 
+
+//=================================================================
+//                   Funciones para el Carrito 
+//=================================================================
+
 function llenarCarrito(){
         const contenidoDelCarrito = document.getElementById('trolleyContainer');
         contenidoDelCarrito.innerHTML = "<h2>CARRITO DE COMPRAS</h2>";
@@ -85,6 +90,20 @@ function llenarCarrito(){
         totalDiv.innerHTML = `<h3>Total a pagar: $ <sapan id="monto">${total.toFixed(2)}</span></h3>`;  //toFixed(2) me muestra 2 decimales
         contenidoDelCarrito.appendChild(totalDiv);
     }
+
+
+function vaciarCarrito(){
+    trolley.length = 0;
+    localStorage.setItem("trolley", JSON.stringify(trolley));
+    llenarCarrito();
+    alert("Se ha enviado tu peido. \nEl carrito se ha vaciado")
+}
+
+function eliminarDelCarrito(index){
+    trolley.splice(index, 1); //elimino 1 elemento en la posición "index"
+    localStorage.setItem("troelly", JSON.stringify(trolley));
+    llenarCarrito(); //volvemos a llenar el carrito con los items que quedaron
+}
 
 //función con el método reduce() para reducir el array a un único valor total
 function calcularTotal(){
@@ -135,14 +154,10 @@ btnPedido.addEventListener('click', () =>{
     }
 });
 
-function vaciarCarrito(){
-    trolley.length = 0;
-    localStorage.setItem("trolley", JSON.stringify(trolley));
-    llenarCarrito();
-    alert("Se ha enviado tu peido. \nEl carrito se ha vaciado")
-}
-
 //=======================================================================
+
+
+
 
 //===== cierro sesión -> voy a index.html
 const btnCerrar = document.getElementById('btnCerrar');
