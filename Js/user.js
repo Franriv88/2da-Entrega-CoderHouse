@@ -46,7 +46,32 @@ async function loadProducts(){
                 });
                 localStorage.setItem("trolley", JSON.stringify(trolley));
                 llenarCarrito(); //llamo a mi función de llenado del trolley (carrito)
-                alert(`Agregaste ${producto.nombre} al carrito`); //cambiar usando las Sweet Alerts que enseñó la profe Diana
+                // alert(`Agregaste ${producto.nombre} al carrito`); cambiar usando las Sweet Alerts que enseñó la profe Diana
+                Swal.fire({
+                    title: `Agregaste "${producto.nombre}" a tu carrito! 👋`,
+                    icon: 'success',
+                    position: 'top',
+                    timer: 2000,
+                    color: '#abff2e',
+                    background: '#0a0a0aff',
+                    showClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeInDown
+                        animate__faster
+                        `,
+                    },
+                    hideClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeOutUp
+                        animate__faster
+                        `,
+                    },
+                        grow: 'row',
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                })
             });
             
         });
@@ -79,8 +104,29 @@ function llenarCarrito(){
 
             const botonEliminar = itemDiv.querySelector('.deleteButton');
             botonEliminar.addEventListener('click', () => {
-                eliminarDelCarrito(index);
+
+                    Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                    });
+                    eliminarDelCarrito(index);
+                }
+                });
+                
             })
+            
+
         });
         
         const total = calcularTotal();
