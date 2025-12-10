@@ -73,7 +73,7 @@ function llenarCarrito(){
             <img src="${item.imagen}" alt="${item.nombre}" class="carrito-item-img">
             <span class="carrito-item-nombre">${index+1}. ${item.nombre}</span>
             <span class="carrito-item-precio">$${item.precio}</span>
-            <button class="deleteButton" id="deleteButton">Eliminar</button>
+            <button class="deleteButton">Eliminar</button>
             `
             contenidoDelCarrito.appendChild(itemDiv); 
 
@@ -87,7 +87,7 @@ function llenarCarrito(){
         
         const totalDiv = document.createElement('div')
         totalDiv.className = 'totalPago';
-        totalDiv.innerHTML = `<h3>Total a pagar: $ <sapan id="monto">${total.toFixed(2)}</span></h3>`;  //toFixed(2) me muestra 2 decimales
+        totalDiv.innerHTML = `<h3>Total a pagar: $ <span id="monto">${total.toFixed(2)}</span></h3>`;  //toFixed(2) me muestra 2 decimales
         contenidoDelCarrito.appendChild(totalDiv);
     }
 
