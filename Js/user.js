@@ -17,18 +17,22 @@ async function loadProducts(){
         const response = await fetch('../trolley.json'); //consume los datos del trolley.json que contiene el array de productos que antes tenías en el user.js
         const data = await response.json() //transformas "parseas" la información
         
-        
-        
-        // cardItem.classList.add('productCard'); Le agrego una clase al elemento article que acabo de crear para luego poder modificarlo con CSS
 
         data.productos.forEach(producto => {
             const cardItem = document.createElement('article'); //en clase vimos que podemos crear elementos html desde acá (minuto 57:46 de la clase del 15 nov)
+            cardItem.classList.add('productCard'); //le agrego una clase para luego darle estilo con CSS
             cardItem.innerHTML = `
-            <div class="product-card">
-                <h2> ${producto.nombre}</h2>
-                <p> Precio: $${producto.precio}</p>
-                <p> ${producto.descripcion}</p>
-                <img src="${producto.imagen}" alt="${producto.nombre}" width="150"/>`;
+                <h2 class="font-face">${producto.nombre}</h2>
+                <img src="${producto.imagen}" alt="${producto.nombre}" width="150">
+                <div class="product-info">
+                    <p class="font-face">Precio: $${producto.precio}</p>
+                    <p>Descripción: ${producto.descripcion}</p>
+                </div>
+                
+                <div class="card-buttons">
+                    <button class="addButton" id="addButton${producto.id}">Agregar</button>
+                </div>
+            `;
 
             productItemsContainer.appendChild(cardItem); //agregamos la card al DOM
 
@@ -52,31 +56,6 @@ async function loadProducts(){
 }  
 
 loadProducts();  //Llamo a la función 
-
-
-
-    //métopdo appendChild: agrega un nodo al final de la lista de hijos de un nodo padre especificado.
-    // productItemsContainer.appendChild(cardItem); //le agrego la card al contenedor de productos. Ahora las cards sí pasan a ser hijas del contenedor de productos
-
-    // const botonAgregar = document.getElementById(`addButton${producto.id}`);
-    // //lleno el carrito con cosas
-    // botonAgregar.addEventListener('click', ()=> {
-    //     // alert(`Agregaste ${producto.nombre} al carrito`);
-    //     trolley.push({nombre: producto.nombre, precio: producto.precio, imagen: producto.imagen}); //cargo los productos 
-    //     localStorage.setItem("trolley", JSON.stringify(trolley)); //uso el localStorage para que mi carrito no se borre
-    //     llenarCarrito();   //llamo a la función
-    // });
-    /*Pasos:
-    1- Crear la card
-    2- Agregar la card al contenedor
-    3- Crear el botón "Agregar"
-    4- Creamos el evento botonAgregar.addEventListener('click', ()=> {}
-    5- Adentro puse una alerta y un push() para agregar al array de trolley (carrito) solo los campos que me interesan
-    6- Guardamos en el localStorage (converimos a JSON con JSON.stringify(nombre de mi array de carrito))
-    7- Mostramos o imprimimos en el carrito, en el html
-    */
-// });
-//============= y acá termina el forEach ==============
 
 function llenarCarrito(){
         const contenidoDelCarrito = document.getElementById('trolleyContainer');
@@ -119,8 +98,7 @@ function calcularTotal(){
 // apretando los botones VER CARRITO o VER PRODUCTOS
 // ================================================================
 
-// capturo los elementos primero
-const productsContainer = document.getElementById('productsContainer');
+// capturo los elementos
 const trolleyContainer = document.getElementById('trolleyContainer');
 const btnVerProductos = document.getElementById('btnVerProductos');
 const btnVerTrolley = document.getElementById('btnVerTrolley');
