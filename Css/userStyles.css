@@ -23,40 +23,56 @@
     src: local('DS-Digital'), url('https://fonts.cdnfonts.com/s/15049/DS-DIGIT.woff') format('woff');
 }
 
+/* Forzamos la fuente en el popup de SweetAlert */
+.swal2-popup {
+    font-family: 'DS-Digital', sans-serif !important;
+    font-style: normal;
+    font-weight: 400;
+}
+
+/* Opcional: Si quieres que el título sea aún más específico */
+.swal2-title {
+    font-family: 'DS-Digital', sans-serif !important;
+    font-style: normal;
+    font-weight: 400;
+}
+
 :root{
     --primary-color: #ffffff;
     --secondary-color: #767575;
     --background-color: #ffffff;
-    --text-color: #0a0a0a;
-    --font-face-color:rgb(0, 0, 0);
+    --text-color: #ffffff;
+    --buttons-color:linear-gradient(45deg, #ff00de, #fe0055);
+    --shadow-buttons-color:rgb(0, 0, 0);
+    --font-face-color:#ffff00;
 }
 
-body{
+body {
     margin: 0;
     padding: 0;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background-image: url('../Recursos/imagenes/fondo-synthwave.jpg');
+    background-size: cover; 
+    background-position: center center;
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+    color: white; 
     font-family: Arial, sans-serif;
 }
 
 nav{
     display: flex;
     justify-content: center;
-    background-color: #fff;
+    background-color: #000;
     padding: 10px;
 }
 
-.title h2{
-    display: flex;
-    margin: 20px 0;
-}
+
 h2{
-    color: var(--primary-color);
+    color: #ffea00;
 }
 
 #containerCarrito{
-    /* background-image: url("../Recursos/imagenes/carritoWallpaper.jpg"); */
-    background-color: var(--background-color);
+    background-image: url("../Recursos/imagenes/Background80.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -73,19 +89,6 @@ h2{
     align-items: stretch;
     width: 100%;
     min-height: 50vh;
-}
-
-.productCard{
-    border: 1px solid var(--secondary-color);
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    width: 200px;
-    text-align: center;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
 }
 
 /* Redugimos el tamaño de las imágenes que están en user.js */
@@ -162,11 +165,12 @@ h2{
                   BOTONES
 ======================================================= */
 .buttonSelect{
-    background-color: black;
-    color: greenyellow;
+    background: var(--buttons-color);
+    color: #000;
     font-family: 'DS-Digital';
+    font-weight: 700;
     letter-spacing: 3px;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     width: 11rem;
     height: 3rem;
     border-radius: 5px;
@@ -177,12 +181,100 @@ h2{
 .buttonSelect:hover{
     border: 0.5px solid rgb(0, 183, 255);
     cursor: pointer;
-    box-shadow: 0px 0px 70px rgb(0, 183, 255); /* Shadow on hover */
+    box-shadow: 0px 0px 7px rgb(0, 183, 255); /* Shadow on hover */
 }
+
+.stat-number {
+    font-family: 'DS-Digital', monospace;
+    font-size: 3rem;
+    color: #00f2ff; /* Cian eléctrico */
+    text-shadow: 0 0 10px #00f2ff;
+    margin: 10px 0;
+}
+
 
 #btnVerProductos {
     visibility: hidden;
 }
 #btnPedido {
     visibility: hidden;
+}
+
+
+/* LAS TARJETAS  */
+.productCard, .stat-card {
+    /* Fondo negro semi-transparente. Deja ver un poco la rejilla de atrás */
+    background: rgba(20, 10, 40, 0.7); 
+    
+    /* Borde neón. Probemos con el rosa/magenta de la rejilla */
+    border: 2px solid #ff00ff; 
+    
+    /* Resplandor exterior (Glow) para que parezca luz */
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+    
+    /* Redondear un poco las esquinas */
+    border-radius: 10px;
+    
+    /* Espaciado interno */
+    padding: 15px;
+    margin: 15px;
+    width: 200px; /* Manteniendo tu ancho */
+    text-align: center;
+    
+    /* Suavizar el efecto hover */
+    transition: all 0.3s ease;
+}
+
+/* EFECTO HOVER */
+.productCard:hover, .stat-card:hover {
+    /* Se vuelve un poco más sólida y brilla más */
+    background: rgba(20, 10, 40, 0.9); 
+    box-shadow: 0 0 25px rgba(255, 0, 255, 0.8);
+    transform: translateY(-5px); /* Pequeño efecto de levitación */
+}
+
+/* 4. TEXTOS DENTRO DE LA TARJETA */
+.productCard h2 {
+    /* Título en amarillo/naranja como el sol */
+    color: #ffcc00; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-family: 'DS-Digital', sans-serif; /* Asegúrate de usar tu fuente aquí */
+}
+
+/* Precio */
+.product-info p:first-child {
+    color: #00ffcc; /* Cian eléctrico para el precio */
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-family: 'DS-Digital', sans-serif;
+}
+
+/* Descripción */
+.product-info p:last-child {
+    color: #e0e0e0; /* Blanco hueso para leer bien la descripción de los productos*/
+    font-size: 0.9rem;
+}
+
+/* 5. BOTÓN "AGREGAR" */
+.addButton {
+    /* Degradado ochentoso para el botón */
+    background: linear-gradient(45deg, #ff00ff, #ff9900);
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 0, 255, 0.3);
+    font-family: 'DS-Digital', sans-serif;
+    margin-top: 10px;
+}
+
+.addButton:hover {
+    /* Invertir el degradado o hacerlo más brillante */
+    background: linear-gradient(45deg, #ff9900, #ff00ff);
+    box-shadow: 0 0 15px rgba(255, 153, 0, 0.6);
 }

@@ -50,7 +50,7 @@ async function loadProducts(){
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Producto agregado al carrito",
+                    title: "Producto agregado",
                     showConfirmButton: false,
                     timer: 1000
                     });
@@ -87,8 +87,8 @@ function llenarCarrito(){
             botonEliminar.addEventListener('click', () => {
 
             Swal.fire({
-                title: "¿Estás seguro?",
-                text: `Se eliminará ${item.nombre}.`,
+                title: "Confirme",
+                html: `Vas a eliminar: <strong>${item.nombre}</strong>.`,
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -98,8 +98,8 @@ function llenarCarrito(){
                 }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                    title: "Eliminado con éxito",
-                    text: `El artículo "${item.nombre}" ha sido eliminado del carrito.`,
+                    title: "Eliminado",
+                    text: `"${item.nombre}" ha sido eliminado`,
                     icon: "success"
                     });
                     eliminarDelCarrito(index);

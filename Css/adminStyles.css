@@ -39,27 +39,6 @@ body{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .buttonSelect{
     background-color: black;
     color: greenyellow;
@@ -78,3 +57,4 @@ body{
     cursor: pointer;
     box-shadow: 0px 0px 70px rgb(0, 183, 255); /* Shadow on hover */
 }
+
