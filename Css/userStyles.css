@@ -186,7 +186,7 @@ h2{
     font-family: 'DS-Digital', monospace;
     font-size: 1.5rem;
     color: #00ffcc; 
-    text-shadow: 0 0 5px #00ffcc;
+    text-shadow: 0 0 5px #ffffff;
     margin-right: 20px;
     font-weight: bold;
 }
@@ -216,8 +216,10 @@ h2{
 }
 
 #monto{
-    color: #00ffcc;
+    color: red;
+    padding: 10px 15px;
     font-weight: bold;
+    background-color: #000;
 }
 
 /* ====================================================
