@@ -50,7 +50,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('../Recursos/imagenes/fondo-synthwave.jpg');
+    background-image: url("../Recursos/imagenes/Background80.jpg");
     background-size: cover; 
     background-position: center center;
     background-attachment: fixed; 
@@ -72,7 +72,6 @@ h2{
 }
 
 #containerCarrito{
-    background-image: url("../Recursos/imagenes/Background80.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -120,38 +119,90 @@ h2{
 /* ======================================================
                 Sección de Carrito (Trolley) 
 =========================================================*/
-#trolleyContainer{
-    display: none;
-    justify-content: center;
-    flex-wrap: wrap; 
-    align-items:center;
-    width: 100%;
+#trolleyContainer {
+    display: none; /* Se mantiene oculto hasta que el JS lo active */
+    justify-content: flex-start; /* Alineamos todo al inicio (arriba) */
+    flex-direction: column;      /* Lista vertical */
+    align-items: flex-start;     /* Pegado a la izquierda */
+    width: 65%;        /* Ocupamos solo el 65% de la pantalla */
+    margin-left: 5%;   /* Un poco de margen a la izquierda */
+    padding-bottom: 100px; /* Espacio extra abajo para hacer scroll cómodo */
     min-height: 50vh;
+    
 }
 
-.trolleyItem{
-    border: 1px solid var(--secondary-color);
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    width: 200px;
-    text-align: center;
-    background-color: var(--primary-color);
-    color: var(--text-color);
+/* ======================================================
+   6. ITEMS DEL CARRITO (Estilo Neon Unificado)
+========================================================= */
+.trolleyItem {
+    /* 1. VISUALES (Copiado de productCard para que se vea igual) */
+    background: rgba(20, 10, 40, 0.7); /* Fondo oscuro semi-transparente */
+    border: 2px solid #ff00ff;         /* Borde Magenta Neón */
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.4); /* Resplandor */
+    border-radius: 10px;
+    color: #ffffff;                    /* Texto blanco */
+    padding: 10px 20px;
+    margin: 15px 0;                    /* Separación entre items */
+    width: 80%;                       /* Que ocupe todo el ancho del contenedor */
+    max-width: 700px;                  /* Pero que no se estire demasiado */
     display: flex;
-    flex-direction:column;
+    align-items: center;               /* Centrar verticalmente */
+    justify-content: space-between;    /* Separar elementos (Img izq - Botón der) */
+    width: 90%; /* Ocupa el ancho disponible de la columna izquierda */
+    margin-left: 0; /* Alineado a la izquierda */
+    transition: all 0.3s ease;
 }
 
-.totalPago{
-    width: 100%;
-    text-align: right; /* Alinea el total a la derecha */
-    margin-top: 20px;
-    padding: 15px;
-    background-color: rgba(0, 0, 0, 0.2); /* Un fondo sutil */
+/* Efecto Hover igual que los productos */
+.trolleyItem:hover {
+    background: rgba(20, 10, 40, 0.9);
+    box-shadow: 0 0 25px rgba(255, 0, 255, 0.8);
+    transform: translateX(10px); 
+}
+
+/* Nombre del producto en el carrito */
+.carrito-item-nombre {
+    font-family: 'DS-Digital', monospace;
+    font-size: 1.5rem;
+    color: #ffcc00;
+    text-shadow: 0 0 5px #ffcc00;
+    margin-left: 20px;
+    flex-grow: 1; /* Para que ocupe el espacio y empuje el precio */
+    text-align: left;
+}
+
+/* Precio en el carrito */
+.carrito-item-precio {
+    font-family: 'DS-Digital', monospace;
+    font-size: 1.5rem;
+    color: #00ffcc; 
+    text-shadow: 0 0 5px #00ffcc;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+
+/* Ajuste de la imagen pequeña */
+.trolleyItem img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
     border-radius: 5px;
-    font-family: 'DS-Digital', monospace; /* ¡Usamos tu fuente digital! */
+}
+
+
+
+.totalPago {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    font-family: 'DS-Digital', monospace;
     font-size: 1.8rem;
-    color: #fff; /* Verde neón para el dinero */
+    color: #ffffff;
 }
 
 #monto{
@@ -161,6 +212,20 @@ h2{
 .carrito-item-nombre {
     font-weight: bold;
 }
+
+/* ====================================================
+                  Admin
+======================================================= */
+#mis-estadisticas {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+
+
+
+
 /* ====================================================
                   BOTONES
 ======================================================= */
@@ -200,52 +265,46 @@ h2{
     visibility: hidden;
 }
 
-
-/* LAS TARJETAS  */
-.productCard, .stat-card {
-    /* Fondo negro semi-transparente. Deja ver un poco la rejilla de atrás */
+/* ==================================== 
+             LAS TARJETAS             
+   ==================================== */
+.productCard, .stat-card{
     background: rgba(20, 10, 40, 0.7); 
-    
-    /* Borde neón. Probemos con el rosa/magenta de la rejilla */
     border: 2px solid #ff00ff; 
-    
-    /* Resplandor exterior (Glow) para que parezca luz */
     box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
-    
-    /* Redondear un poco las esquinas */
     border-radius: 10px;
-    
-    /* Espaciado interno */
     padding: 15px;
     margin: 15px;
-    width: 200px; /* Manteniendo tu ancho */
+    width: 200px; 
     text-align: center;
-    
-    /* Suavizar el efecto hover */
     transition: all 0.3s ease;
+}
+
+.stat-card{
+    width: 30%;
+    padding: 20px;
 }
 
 /* EFECTO HOVER */
 .productCard:hover, .stat-card:hover {
-    /* Se vuelve un poco más sólida y brilla más */
+    /* Se vuelve un poco más opaca y brilla más */
     background: rgba(20, 10, 40, 0.9); 
     box-shadow: 0 0 25px rgba(255, 0, 255, 0.8);
-    transform: translateY(-5px); /* Pequeño efecto de levitación */
+    transform: translateY(-5px); 
 }
 
-/* 4. TEXTOS DENTRO DE LA TARJETA */
+/*  TEXTOS DENTRO DE LA TARJETA */
 .productCard h2 {
-    /* Título en amarillo/naranja como el sol */
     color: #ffcc00; 
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 10px;
-    font-family: 'DS-Digital', sans-serif; /* Asegúrate de usar tu fuente aquí */
+    font-family: 'DS-Digital', sans-serif; 
 }
 
 /* Precio */
 .product-info p:first-child {
-    color: #00ffcc; /* Cian eléctrico para el precio */
+    color: #00ffcc; 
     font-weight: bold;
     font-size: 1.5rem;
     font-family: 'DS-Digital', sans-serif;
@@ -253,11 +312,11 @@ h2{
 
 /* Descripción */
 .product-info p:last-child {
-    color: #e0e0e0; /* Blanco hueso para leer bien la descripción de los productos*/
+    color: #e0e0e0;
     font-size: 0.9rem;
 }
 
-/* 5. BOTÓN "AGREGAR" */
+/*  BOTÓN "AGREGAR" */
 .addButton {
     /* Degradado ochentoso para el botón */
     background: linear-gradient(45deg, #ff00ff, #ff9900);

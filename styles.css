@@ -63,7 +63,8 @@ body{
     padding: 20px;
     border-radius: 15px;
     background-color: rgba(43, 51, 46, 0.309);
-    border: 1px solid rgba(255, 255, 255, 0.243);
+    border: 0.1px solid #ff00ff; 
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
 }
 
 .spanInputs{
@@ -94,9 +95,10 @@ body{
     font-size: 1.1rem;
     width: 11rem;
     height: 3rem;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Initial shadow (optional) */
-    transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the shadow */
+    transition: box-shadow 0.3s ease-in-out;
+    border: 2px solid #ff00ff; 
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+    border-radius: 10px;
 }
 
 .buttonSelect:hover{
