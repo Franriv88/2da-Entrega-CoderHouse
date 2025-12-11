@@ -26,7 +26,7 @@
 :root{
     --primary-color: #ffffff;
     --secondary-color: #767575;
-    --background-color: #2852a5;
+    --background-color: #ffffff;
     --text-color: #0a0a0a;
     --font-face-color:rgb(0, 0, 0);
 }
@@ -42,11 +42,21 @@ body{
 nav{
     display: flex;
     justify-content: center;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.title h2{
+    display: flex;
+    margin: 20px 0;
+}
+h2{
+    color: var(--primary-color);
 }
 
 #containerCarrito{
     /* background-image: url("../Recursos/imagenes/carritoWallpaper.jpg"); */
-    background-color: #0a0a0a;
+    background-color: var(--background-color);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -145,6 +155,9 @@ nav{
     color: #D61F03;
 }
 
+.carrito-item-nombre {
+    font-weight: bold;
+}
 /* ====================================================
                   BOTONES
 ======================================================= */

@@ -48,30 +48,12 @@ async function loadProducts(){
                 llenarCarrito(); //llamo a mi función de llenado del trolley (carrito)
                 // alert(`Agregaste ${producto.nombre} al carrito`); cambiar usando las Sweet Alerts que enseñó la profe Diana
                 Swal.fire({
-                    title: `Agregaste "${producto.nombre}" a tu carrito! 👋`,
-                    icon: 'success',
-                    position: 'top',
-                    timer: 2000,
-                    color: '#abff2e',
-                    background: '#0a0a0aff',
-                    showClass: {
-                        popup: `
-                        animate__animated
-                        animate__fadeInDown
-                        animate__faster
-                        `,
-                    },
-                    hideClass: {
-                        popup: `
-                        animate__animated
-                        animate__fadeOutUp
-                        animate__faster
-                        `,
-                    },
-                        grow: 'row',
-                        showConfirmButton: false,
-                        showCloseButton: true,
-                })
+                    position: "top-end",
+                    icon: "success",
+                    title: "Producto agregado al carrito",
+                    showConfirmButton: false,
+                    timer: 1000
+                    });
             });
             
         });
@@ -89,9 +71,8 @@ loadProducts();  //Llamo a la función
 
 function llenarCarrito(){
         const contenidoDelCarrito = document.getElementById('trolleyContainer');
-        contenidoDelCarrito.innerHTML = "<h2>CARRITO DE COMPRAS</h2>";
+        contenidoDelCarrito.innerHTML = ``;
         trolley.forEach((item,index) =>{
-            // contenidoDelCarrito.innerHTML += `<p>${index+1}.${item.nombre} - $${item.precio}<br><img src="${item.imagen}" alt="${item.nombre}"></p>;`  //ASÍ NO PUDE LUEGO USAR EL CSS
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('trolleyItem')
             itemDiv.innerHTML=`
@@ -105,19 +86,20 @@ function llenarCarrito(){
             const botonEliminar = itemDiv.querySelector('.deleteButton');
             botonEliminar.addEventListener('click', () => {
 
-                    Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: `Se eliminará ${item.nombre}.`,
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
+                confirmButtonText: "Aceptar",
+                cancelButtonText: "Cancelar"
                 }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
+                    title: "Eliminado con éxito",
+                    text: `El artículo "${item.nombre}" ha sido eliminado del carrito.`,
                     icon: "success"
                     });
                     eliminarDelCarrito(index);
@@ -125,8 +107,7 @@ function llenarCarrito(){
                 });
                 
             })
-            
-
+        
         });
         
         const total = calcularTotal();
@@ -142,7 +123,12 @@ function vaciarCarrito(){
     trolley.length = 0;
     localStorage.setItem("trolley", JSON.stringify(trolley));
     llenarCarrito();
-    alert("Se ha enviado tu peido. \nEl carrito se ha vaciado")
+    // alert("Se ha enviado tu peido. \nEl carrito se ha vaciado")
+    trolleyContainer.style.display = "none";
+    productsContainer.style.display = "flex";
+    btnVerProductos.style.visibility = "hidden"; // Ocultamos "Volver"
+    btnVerTrolley.style.visibility = "visible";  // Mostramos "Ir al carrito"
+    btnPedido.style.visibility = "hidden"; //ocultamos el "Hacer Pedido"
 }
 
 function eliminarDelCarrito(index){
@@ -195,7 +181,15 @@ btnPedido.addEventListener('click', () =>{
         historialPedidos += 1; //sumo 1 pedido más 
         localStorage.setItem('adminRecaudado', historialRecaudado);
         localStorage.setItem('adminContador', historialPedidos);
-        alert(`Pedido confirmado. \nTotal a pagar: $${totalDelPedido.toFixed(2)}`);
+        // alert(`Pedido confirmado. \nTotal a pagar: $${totalDelPedido.toFixed(2)}`);
+        Swal.fire({
+            title: "Tu pedido ha sido confirmado.",
+            text: "¡Vuelve pronto!",
+            imageUrl: "../Recursos/imagenes/BackToTheFuture-purchases.jpg",
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: "Custom image"
+            });
         vaciarCarrito();
     }
 });
