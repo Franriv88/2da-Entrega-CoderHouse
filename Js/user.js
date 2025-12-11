@@ -47,13 +47,24 @@ async function loadProducts(){
                 localStorage.setItem("trolley", JSON.stringify(trolley));
                 llenarCarrito(); //llamo a mi función de llenado del trolley (carrito)
                 // alert(`Agregaste ${producto.nombre} al carrito`); cambiar usando las Sweet Alerts que enseñó la profe Diana
-                Swal.fire({
+                const Toast = Swal.mixin({
+                    toast: true,
                     position: "top-end",
-                    icon: "success",
-                    title: "Producto agregado",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                     toast.onmouseleave = Swal.resumeTimer;
+                    }
                     });
+                    Toast.fire({
+                    icon: "success",
+                    title: "Agregado al carrito",
+                    color: "#fff",
+                    fontWeight: "bold",
+                    background:"linear-gradient(45deg, #ff00de, #fe0055)"
+                });
             });
             
         });
@@ -91,8 +102,8 @@ function llenarCarrito(){
                 html: `Vas a eliminar: <strong>${item.nombre}</strong>.`,
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
+                confirmButtonColor: "#ff00de", 
+                cancelButtonColor: "#fe0055", 
                 confirmButtonText: "Aceptar",
                 cancelButtonText: "Cancelar"
                 }).then((result) => {
@@ -100,7 +111,8 @@ function llenarCarrito(){
                     Swal.fire({
                     title: "Eliminado",
                     text: `"${item.nombre}" ha sido eliminado`,
-                    icon: "success"
+                    icon: "success",
+                    confirmButtonColor: "#ff00de",
                     });
                     eliminarDelCarrito(index);
                 }
@@ -123,7 +135,6 @@ function vaciarCarrito(){
     trolley.length = 0;
     localStorage.setItem("trolley", JSON.stringify(trolley));
     llenarCarrito();
-    // alert("Se ha enviado tu peido. \nEl carrito se ha vaciado")
     trolleyContainer.style.display = "none";
     productsContainer.style.display = "flex";
     btnVerProductos.style.visibility = "hidden"; // Ocultamos "Volver"
@@ -133,7 +144,7 @@ function vaciarCarrito(){
 
 function eliminarDelCarrito(index){
     trolley.splice(index, 1); //elimino 1 elemento en la posición "index"
-    localStorage.setItem("troelly", JSON.stringify(trolley));
+    localStorage.setItem("trolley", JSON.stringify(trolley));
     llenarCarrito(); //volvemos a llenar el carrito con los items que quedaron
 }
 
@@ -188,7 +199,10 @@ btnPedido.addEventListener('click', () =>{
             imageUrl: "../Recursos/imagenes/BackToTheFuture-purchases.jpg",
             imageWidth: 400,
             imageHeight: 200,
-            imageAlt: "Custom image"
+            imageAlt: "Custom image",
+            confirmButtonColor: "#ff9900",
+            showConfirmButton: true,
+            confirmButtonText: "Cerrar"
             });
         vaciarCarrito();
     }

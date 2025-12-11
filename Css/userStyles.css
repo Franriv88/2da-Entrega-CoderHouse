@@ -76,8 +76,16 @@ h2{
     background-position: center;
     background-attachment: fixed;
     min-height: 100vh;
+    
 }
 
+#container{
+    display: block;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 /* ======================================================
                 Sección de Productos 
 =========================================================*/
@@ -163,12 +171,14 @@ h2{
 /* Nombre del producto en el carrito */
 .carrito-item-nombre {
     font-family: 'DS-Digital', monospace;
+    font-weight: bold;
     font-size: 1.5rem;
     color: #ffcc00;
     text-shadow: 0 0 5px #ffcc00;
     margin-left: 20px;
     flex-grow: 1; /* Para que ocupe el espacio y empuje el precio */
     text-align: left;
+    
 }
 
 /* Precio en el carrito */
@@ -206,10 +216,7 @@ h2{
 }
 
 #monto{
-    color: #D61F03;
-}
-
-.carrito-item-nombre {
+    color: #00ffcc;
     font-weight: bold;
 }
 

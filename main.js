@@ -6,13 +6,17 @@ const adminButton = document.getElementById('adminButton');
 const enterButton = document.getElementById('enterButton');
 const inputName = document.getElementById('inputName');
 const inputPass = document.getElementById('inputPass');
-// const loginContainer = document.getElementById('login'); le iba a agragar los 2 inputs desde el js pero me parecio mejor agregarlos directo en el html
 
 //Escuchamos si se hizo click en el moton admin y mostramos los 2 inputs
 adminButton.addEventListener('click', () =>{
     inputName.style.display = 'block';
     inputPass.style.display = 'block'; 
-    alert("Name: CoderHouse \nPass: 12345");
+    Swal.fire({
+        position: "top-end",
+        icon: "info",
+        title: "Name: CoderHouse \nPass: 12345",
+        showConfirmButton: false
+    });
 })
 
 //Escuchamos si se hizo click en el boton user y ocultamos los 2 inputs
@@ -35,7 +39,22 @@ function validacionAdmin(nombre, clave){
     if(nombre === "CoderHouse" && clave === "12345"){
         window.location.replace("./HTML/adminPage.html"); //window.location sí lo puedo usar! min 2:10:23. Iugal me dí cuenta que si le quito la palabra "window" funciona también.
     } else {
-        alert("Nombre o clave incorrectos");
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+            });
+            Toast.fire({
+            icon: "error",
+            title: "Usuario o contraseña incorrectos"
+        });
+    
     }
 }
 
